@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hierarchy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<style>
+    ul.dashed {
+  list-style-type: none;
+}
+
+ul.dashed > li {
+  text-indent: -5px;
+}
+ul.dashed > li:before {
+  content: "-";
+  text-indent: -5px;
+}
+</style>
+</head>
+<body>
+<!--<h1>-->
+<!--{% for i in lst %}-->
+<!--    {% if i.spaces == 0 %}-->
+<!--    <p>{{ i.name }}</p>-->
+<!--    {% else %}-->
+<!--    {% for k in i.spaces %}-->
+<!--    <p> space </p>-->
+<!--      {% endfor %}-->
+<!--    <p>{{ i.name }}</p>-->
+<!--    {% endif %}-->
+<!--    {% endfor %}-->
+<!--</h1>-->
+
+
+<div class="container  mx-auto  px-6 col-lg-4 " style="position : fixed;margin : auto; top : 15%; left : 30%;">
+<!--  <img class="card-img-top" src="..." alt="Card image cap">-->
+<center> <h4>Hierarchy is :</h4> </center>
+    <hr/><h6
+  <div class="card shadow p-2 mb-3 mt-3 bg-white " style="border-radius: 5%;">
+      <div class = "row d-flex justify-content-center  " >
+          <div class="col ">
+                {% for i in lst %}
+
+<div >
+    {% if i.spaces == 0 %}
+    <p>--{{ i.name }}</p>
+    {% else %}
+
+            <div  style="position : relative;">
+                 {% for k in i.spaces %}
+            <span style="display : inline-block;">--</span>
+            {% endfor %}
+            <p style="display : inline-block">{{ i.name }}</p>
+            </div>
+
+
+    {% endif %}
+</div>
+{% endfor %}
+
+
+          </div>
+
+
+      </div>
+
+  </div>
+</div>
+</body>
+</html>

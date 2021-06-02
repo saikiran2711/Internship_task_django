@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+<center>
+    <div class="container">
+        <div class="row" style="margin : 50px;">
+                    <h3>Hello {{ username }}</h3>
+           <center> Task 1: </center>
+                <a href="{% url 'upload' %}">
+                    <button type="button" class="btn btn-outline-success" style="margin-bottom : 10px;">Upload Task</button>
+                </a>
+
+                <a href="{%  url 'display' %}">
+                    <button type="button" class="btn btn-outline-success" style="margin-bottom : 10px;">Display Task</button>
+                </a>
+            <center>Task 2:</center>
+             <a href="{%  url 'hierarchy' %}">
+                    <button type="button" class="btn btn-outline-success" style="margin-bottom : 10px;"> Hierarchy</button>
+                </a>
+      <a href="{%  url 'logout' %}">
+                    <button type="button" class="btn btn-outline-danger">Logout</button>
+                </a>
+
+
+
+        </div>
+    </div>
+</center>
+
+</body>
+</html>

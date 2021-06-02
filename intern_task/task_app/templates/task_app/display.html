@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+<!--      <li class="nav-item active">-->
+<!--        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+<!--      </li>-->
+    </ul>
+<a href="{% url 'logout' %}">
+      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+  </a></div>
+</nav>
+    <div class="container p-4">
+      <div class="row">
+        {% for m in tasks %}
+        <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+          <div class="card h-100 p-4 shadow  mb-3 mt-3 bg-white " style="border-radius: 5%;">
+              {% if m.task_pic %}
+            <img src="{{ m.task_pic.url }}" class="card-img-top" alt="{{ m.task_title}}" style="width: auto; height: 350px; object-fit: contain;">
+            {% endif %}
+              <br>
+            <h4>{{m.task_title}}</h4>
+<!--            <p class="text-muted">{{m.release_year}} | {{m.director}}</p>-->
+            <p>{{m.task_description}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+
+        {% if tasks.has_previous %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ tasks.previous_page_number }}">Previous</a>
+          </li>
+        {% else %}
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+        {% endif %}
+
+        {% if tasks.number|add:'-4' > 1 %}
+            <li class="page-item"><a class="page-link" href="?page={{ tasks.number|add:'-5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% for i in tasks.paginator.page_range %}
+            {% if tasks.number == i %}
+                <li class="page-item active" aria-current="page">
+              <span class="page-link">
+                {{ i }}
+                <span class="sr-only">(current)</span>
+              </span>
+            </li>
+            {% elif i > tasks.number|add:'-5' and i < tasks.number|add:'5' %}
+                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if tasks.paginator.num_pages > tasks.number|add:'4' %}
+           <li class="page-item"><a class="page-link" href="?page={{ tasks.number|add:'5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% if tasks.has_next %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ tasks.next_page_number }}">Next</a>
+          </li>
+        {% else %}
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+          </li>
+        {% endif %}
+      </ul>
+
+    </nav>
+    <!--end of Pagination-->
+
+
+
+
+    <!-- Optional Javascript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

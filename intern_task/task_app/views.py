@@ -39,7 +39,7 @@ def upload(request):
 
 @login_required()
 def display(request):
-    #uploadFakeData(request)  #this function is used only once at first tiem when this page is rendered and later on is not needed.
+    uploadFakeData(request)  #this function is used only once at first tiem when this page is rendered and later on is not needed.So please comment it after rendering for the first time.
     movies = TaskUpload.objects.filter(uid = request.user)  # queryset containing all movies we just created
     paginator = Paginator(movies, 5)
     page_number = request.GET.get('page')
